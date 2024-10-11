@@ -134,4 +134,27 @@ class GildedRoseTest {
         assertEquals(0, app.items[0].quality);
     }
 
+    @Test
+    public void conjured_quality_degrade_twice_as_fast() throws Exception {
+        Item[] items = new Item[] { new Item("Conjured Mana Cake", 5, 5) };
+
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(4, app.items[0].sellIn);
+        assertEquals(3, app.items[0].quality);
+    }
+
+    public void conjured_quality_min_value_is_zero() throws Exception {
+        Item[] items = new Item[] { new Item("Conjured Mana Cake", 5, 0) };
+
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(4, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
+    }
+
 }
